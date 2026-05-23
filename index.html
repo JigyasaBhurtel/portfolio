@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jigyasa Bhurtel</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet"/>
+
   <style>
     *, *::before, *::after {
       margin: 0;
@@ -16,8 +18,6 @@
       --accent-cyan: #00f5ff;
       --accent-violet: #a855f7;
       --accent-pink: #f0abfc;
-      --glow-cyan: 0 0 18px #00f5ff88, 0 0 60px #00f5ff33;
-      --glow-violet: 0 0 18px #a855f788, 0 0 60px #a855f733;
       --bg-deep: #020510;
     }
 
@@ -39,7 +39,7 @@
       position: relative;
     }
 
-    /* ── Animated mesh background ── */
+    /* Background */
     body::before {
       content: '';
       position: fixed;
@@ -64,11 +64,17 @@
     }
 
     @keyframes breathe {
-      0%   { opacity: 0.6; transform: scale(1); }
-      100% { opacity: 1;   transform: scale(1.05); }
+      0% {
+        opacity: 0.6;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
     }
 
-    /* ── Grid lines overlay ── */
+    /* Grid */
     .grid-lines {
       position: fixed;
       inset: 0;
@@ -80,7 +86,7 @@
       pointer-events: none;
     }
 
-    /* ── Floating particles ── */
+    /* Particles */
     .particles {
       position: fixed;
       inset: 0;
@@ -96,23 +102,63 @@
       animation: drift linear infinite;
     }
 
-    .particle:nth-child(1)  { width:3px; height:3px; background:#00f5ff; left:10%; animation-duration:14s; animation-delay:0s;   top:100%; }
-    .particle:nth-child(2)  { width:2px; height:2px; background:#a855f7; left:25%; animation-duration:18s; animation-delay:2s;   top:100%; }
-    .particle:nth-child(3)  { width:4px; height:4px; background:#f0abfc; left:40%; animation-duration:12s; animation-delay:5s;   top:100%; }
-    .particle:nth-child(4)  { width:2px; height:2px; background:#00f5ff; left:60%; animation-duration:16s; animation-delay:1s;   top:100%; }
-    .particle:nth-child(5)  { width:3px; height:3px; background:#a855f7; left:75%; animation-duration:20s; animation-delay:3s;   top:100%; }
-    .particle:nth-child(6)  { width:2px; height:2px; background:#f0abfc; left:88%; animation-duration:13s; animation-delay:7s;   top:100%; }
-    .particle:nth-child(7)  { width:3px; height:3px; background:#00f5ff; left:55%; animation-duration:15s; animation-delay:4s;   top:100%; }
-    .particle:nth-child(8)  { width:2px; height:2px; background:#a855f7; left:32%; animation-duration:19s; animation-delay:6s;   top:100%; }
-
-    @keyframes drift {
-      0%   { opacity: 0;   transform: translateY(0)   scale(1); }
-      10%  { opacity: 0.8; }
-      90%  { opacity: 0.5; }
-      100% { opacity: 0;   transform: translateY(-110vh) scale(0.5); }
+    .particle:nth-child(1) {
+      width: 3px;
+      height: 3px;
+      background: #00f5ff;
+      left: 10%;
+      animation-duration: 14s;
+      top: 100%;
     }
 
-    /* ── Main card ── */
+    .particle:nth-child(2) {
+      width: 2px;
+      height: 2px;
+      background: #a855f7;
+      left: 30%;
+      animation-duration: 18s;
+      top: 100%;
+    }
+
+    .particle:nth-child(3) {
+      width: 4px;
+      height: 4px;
+      background: #f0abfc;
+      left: 60%;
+      animation-duration: 15s;
+      top: 100%;
+    }
+
+    .particle:nth-child(4) {
+      width: 2px;
+      height: 2px;
+      background: #00f5ff;
+      left: 85%;
+      animation-duration: 20s;
+      top: 100%;
+    }
+
+    @keyframes drift {
+      0% {
+        opacity: 0;
+        transform: translateY(0) scale(1);
+      }
+
+      10% {
+        opacity: 0.8;
+      }
+
+      90% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-110vh) scale(0.5);
+      }
+    }
+
+    /* Main */
     main {
       position: relative;
       z-index: 1;
@@ -122,15 +168,22 @@
       justify-content: center;
       flex: 1;
       padding: 2rem;
-      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation: fadeInUp 1.2s ease both;
     }
 
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    /* ── Profile image ── */
+    /* Profile */
     .profile-wrapper {
       position: relative;
       margin-bottom: 2.8rem;
@@ -138,11 +191,15 @@
     }
 
     @keyframes floatBob {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-14px); }
+      0%,100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(14px);
+      }
     }
 
-    /* Outer spinning ring */
     .profile-ring {
       position: absolute;
       inset: -14px;
@@ -156,15 +213,15 @@
       );
       animation: spinRing 6s linear infinite;
       -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-              mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-      filter: blur(0.5px);
+      mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
     }
 
     @keyframes spinRing {
-      to { transform: rotate(360deg); }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
-    /* Pulsing glow halo */
     .profile-halo {
       position: absolute;
       inset: -28px;
@@ -174,36 +231,36 @@
     }
 
     @keyframes haloBreath {
-      from { opacity: 0.4; transform: scale(0.95); }
-      to   { opacity: 1;   transform: scale(1.05); }
+      from {
+        opacity: 0.4;
+        transform: scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1.05);
+      }
     }
 
     .profile-img {
       width: 180px;
       height: 180px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background:
-        linear-gradient(135deg, #0f1f3d 0%, #1a0a2e 100%);
-      border: 2px solid rgba(0, 245, 255, 0.25);
-      box-shadow:
-        0 0 30px #00f5ff33,
-        0 0 80px #a855f722,
-        inset 0 0 30px rgba(0, 245, 255, 0.05);
       overflow: hidden;
       position: relative;
+      border: 2px solid rgba(0,245,255,0.25);
+      box-shadow:
+        0 0 30px #00f5ff33,
+        0 0 80px #a855f722;
     }
 
-    /* Silhouette placeholder */
-    .profile-img svg {
-      width: 100px;
-      height: 100px;
-      opacity: 0.35;
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
     }
 
-    /* Shimmer sweep */
     .profile-img::after {
       content: '';
       position: absolute;
@@ -218,22 +275,25 @@
     }
 
     @keyframes shimmer {
-      0%   { transform: translateX(-100%) skewX(-20deg); }
-      50%, 100% { transform: translateX(200%) skewX(-20deg); }
+      0% {
+        transform: translateX(-100%) skewX(-20deg);
+      }
+
+      50%,100% {
+        transform: translateX(200%) skewX(-20deg);
+      }
     }
 
-    /* ── Name block ── */
+    /* Name */
     .name-block {
       text-align: center;
-      animation: fadeInUp 1.4s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
     .name {
       font-family: 'Orbitron', monospace;
-      font-size: clamp(1.9rem, 5.5vw, 3.4rem);
+      font-size: clamp(2rem, 5vw, 3.5rem);
       font-weight: 900;
       letter-spacing: 0.08em;
-      line-height: 1.1;
       background: linear-gradient(
         135deg,
         #e0f7ff 0%,
@@ -242,18 +302,20 @@
         #f0abfc 100%
       );
       -webkit-background-clip: text;
-      background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 12px #00f5ff55);
       animation: nameGlow 4s ease-in-out infinite alternate;
     }
 
     @keyframes nameGlow {
-      from { filter: drop-shadow(0 0 8px #00f5ff44); }
-      to   { filter: drop-shadow(0 0 22px #00f5ffaa) drop-shadow(0 0 40px #a855f755); }
+      from {
+        filter: drop-shadow(0 0 8px #00f5ff44);
+      }
+
+      to {
+        filter: drop-shadow(0 0 22px #00f5ffaa);
+      }
     }
 
-    /* Decorative divider beneath the name */
     .divider {
       display: flex;
       align-items: center;
@@ -265,13 +327,12 @@
     .divider-line {
       width: 70px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
-      animation: lineGlow 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes lineGlow {
-      from { opacity: 0.5; }
-      to   { opacity: 1; box-shadow: 0 0 8px var(--accent-cyan); }
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent-cyan),
+        transparent
+      );
     }
 
     .divider-dot {
@@ -280,135 +341,80 @@
       border-radius: 50%;
       background: var(--accent-violet);
       box-shadow: 0 0 10px var(--accent-violet);
-      animation: dotPulse 2s ease-in-out infinite;
     }
 
-    @keyframes dotPulse {
-      0%, 100% { transform: scale(1);   opacity: 1; }
-      50%       { transform: scale(1.5); opacity: 0.6; }
-    }
-
-    /* ── Footer ── */
+    /* Footer */
     footer {
       position: relative;
       z-index: 1;
-      width: 100%;
+      padding: 1.5rem;
       text-align: center;
-      padding: 1.4rem 1rem;
-      animation: fadeInUp 1.6s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
     .footer-inner {
-      display: inline-block;
-      padding: 0.6rem 2rem;
+      padding: 0.7rem 2rem;
       border-radius: 100px;
       background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(0, 245, 255, 0.1);
+      border: 1px solid rgba(0,245,255,0.1);
       backdrop-filter: blur(10px);
-      box-shadow: 0 0 20px rgba(0, 245, 255, 0.05);
     }
 
     footer p {
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 300;
+      font-size: 0.75rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(180, 220, 255, 0.45);
+      color: rgba(180,220,255,0.45);
     }
 
-    footer p span {
-      color: rgba(0, 245, 255, 0.6);
-      font-weight: 600;
+    footer span {
+      color: rgba(0,245,255,0.7);
     }
 
-    /* ── Corner decorations ── */
-    .corner {
-      position: fixed;
-      width: 60px;
-      height: 60px;
-      z-index: 1;
-      opacity: 0.4;
-    }
-
-    .corner::before,
-    .corner::after {
-      content: '';
-      position: absolute;
-      background: var(--accent-cyan);
-    }
-
-    .corner::before { width: 2px; height: 100%; }
-    .corner::after  { width: 100%; height: 2px; }
-
-    .corner-tl { top: 20px; left: 20px; }
-    .corner-tr { top: 20px; right: 20px; transform: scaleX(-1); }
-    .corner-bl { bottom: 20px; left: 20px; transform: scaleY(-1); }
-    .corner-br { bottom: 20px; right: 20px; transform: scale(-1); }
-
-    /* ── Responsive ── */
+    /* Responsive */
     @media (max-width: 480px) {
-      .profile-img { width: 140px; height: 140px; }
-      .profile-img svg { width: 76px; height: 76px; }
-      .profile-ring { inset: -10px; }
-      .profile-halo { inset: -20px; }
-      .corner { width: 40px; height: 40px; }
-      .corner-tl, .corner-tr { top: 14px; }
-      .corner-bl, .corner-br { bottom: 14px; }
-      .corner-tl, .corner-bl { left: 14px; }
-      .corner-tr, .corner-br { right: 14px; }
+      .profile-img {
+        width: 140px;
+        height: 140px;
+      }
     }
+
   </style>
 </head>
+
 <body>
 
-  <!-- Grid lines -->
   <div class="grid-lines"></div>
 
-  <!-- Floating particles -->
   <div class="particles">
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
     <div class="particle"></div>
     <div class="particle"></div>
     <div class="particle"></div>
     <div class="particle"></div>
   </div>
 
-  <!-- Corner accents -->
-  <div class="corner corner-tl"></div>
-  <div class="corner corner-tr"></div>
-  <div class="corner corner-bl"></div>
-  <div class="corner corner-br"></div>
-
-  <!-- Main content -->
   <main>
-    <!-- Profile image -->
+
     <div class="profile-wrapper">
       <div class="profile-halo"></div>
       <div class="profile-ring"></div>
+
       <div class="profile-img">
-        <svg viewBox="0 0 100 100" fill="none" xmlns="Jigyasa.jpg">
-          <circle cx="50" cy="36" r="20" fill="#00f5ff"/>
-          <ellipse cx="50" cy="85" rx="32" ry="22" fill="#00f5ff"/>
-        </svg>
+        <img src="Jigyasa.jpg" alt="Jigyasa Bhurtel" class="profile-photo">
       </div>
     </div>
 
-    <!-- Name -->
     <div class="name-block">
       <h1 class="name">Jigyasa Bhurtel</h1>
+
       <div class="divider">
         <div class="divider-line"></div>
         <div class="divider-dot"></div>
         <div class="divider-line"></div>
       </div>
     </div>
+
   </main>
 
-  <!-- Footer -->
   <footer>
     <div class="footer-inner">
       <p>© 2026 <span>Jigyasa Bhurtel</span>. All Rights Reserved.</p>
