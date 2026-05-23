@@ -18,6 +18,8 @@
       --accent-cyan: #00f5ff;
       --accent-violet: #a855f7;
       --accent-pink: #f0abfc;
+      --glow-cyan: 0 0 18px #00f5ff88, 0 0 60px #00f5ff33;
+      --glow-violet: 0 0 18px #a855f788, 0 0 60px #a855f733;
       --bg-deep: #020510;
     }
 
@@ -39,7 +41,6 @@
       position: relative;
     }
 
-    /* Background */
     body::before {
       content: '';
       position: fixed;
@@ -64,17 +65,10 @@
     }
 
     @keyframes breathe {
-      0% {
-        opacity: 0.6;
-        transform: scale(1);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1.05);
-      }
+      0%   { opacity: 0.6; transform: scale(1); }
+      100% { opacity: 1;   transform: scale(1.05); }
     }
 
-    /* Grid */
     .grid-lines {
       position: fixed;
       inset: 0;
@@ -86,7 +80,6 @@
       pointer-events: none;
     }
 
-    /* Particles */
     .particles {
       position: fixed;
       inset: 0;
@@ -102,9 +95,180 @@
       animation: drift linear infinite;
     }
 
-    .particle:nth-child(1) {
-      width: 3px;
-      height: 3px;
+    @keyframes drift {
+      0%   { opacity: 0; transform: translateY(0) scale(1); }
+      10%  { opacity: 0.8; }
+      90%  { opacity: 0.5; }
+      100% { opacity: 0; transform: translateY(-110vh) scale(0.5); }
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      padding: 2rem;
+      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .profile-wrapper {
+      position: relative;
+      margin-bottom: 2.8rem;
+      animation: floatBob 5s ease-in-out infinite;
+    }
+
+    @keyframes floatBob {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-14px); }
+    }
+
+    .profile-ring {
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        #00f5ff,
+        #a855f7,
+        #f0abfc,
+        #00f5ff
+      );
+      animation: spinRing 6s linear infinite;
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+      mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+    }
+
+    @keyframes spinRing {
+      to { transform: rotate(360deg); }
+    }
+
+    .profile-halo {
+      position: absolute;
+      inset: -28px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #00f5ff22 0%, #a855f711 50%, transparent 70%);
+      animation: haloBreath 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes haloBreath {
+      from { opacity: 0.4; transform: scale(0.95); }
+      to   { opacity: 1;   transform: scale(1.05); }
+    }
+
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      background:
+        linear-gradient(135deg, #0f1f3d 0%, #1a0a2e 100%);
+      border: 2px solid rgba(0, 245, 255, 0.25);
+      box-shadow:
+        0 0 30px #00f5ff33,
+        0 0 80px #a855f722;
+    }
+
+    .profile-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .profile-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        110deg,
+        transparent 30%,
+        rgba(255,255,255,0.06) 50%,
+        transparent 70%
+      );
+      animation: shimmer 4s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) skewX(-20deg); }
+      100% { transform: translateX(200%) skewX(-20deg); }
+    }
+
+    .name {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.9rem, 5vw, 3.4rem);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #e0f7ff, #00f5ff, #a855f7, #f0abfc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(180,220,255,0.45);
+    }
+
+    footer span {
+      color: rgba(0,245,255,0.7);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="grid-lines"></div>
+
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <main>
+
+    <div class="profile-wrapper">
+      <div class="profile-halo"></div>
+      <div class="profile-ring"></div>
+      <div class="profile-img">
+        <img src="Jigyasa.jpg" alt="Jigyasa Bhurtel" class="profile-photo">
+      </div>
+    </div>
+
+    <h1 class="name">Jigyasa Bhurtel</h1>
+
+  </main>
+
+  <footer>
+    <p>© 2026 <span>Jigyasa Bhurtel</span>. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>      height: 3px;
       background: #00f5ff;
       left: 10%;
       animation-duration: 14s;
